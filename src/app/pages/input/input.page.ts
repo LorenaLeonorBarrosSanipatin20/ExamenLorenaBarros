@@ -1,22 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-input',
   templateUrl: './input.page.html',
   styleUrls: ['./input.page.scss'],
 })
 export class InputPage implements OnInit {
-  nombre: string = 'Fernando';
-  usuario = {
-    email: '',
-    password: ''
-  }
-  constructor() { }
+
+  constructor(private alerCtrl: AlertController) { }
+
   ngOnInit() {
   }
-  onSubmit(formulario: NgForm) {
-    console.log('submit');
-    console.log(this.usuario);
-    console.log(formulario);
-  }
+  async FullClick() {
+    const alert = await this.alerCtrl.create({
+        backdropDismiss: false,
+        header: 'Mensaje',
+        
+        message: 'Guardado correctamente!',
+        buttons: ['ok']
+  });
+  await alert.present();
+};
+
 }
